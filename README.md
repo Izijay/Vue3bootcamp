@@ -4,9 +4,7 @@ repo for the VueJS Vue3 Bootcamp from Udemy by Laith Harb
 
 Order:
 
-  -- JScounter_app 
-  
-  -- VueCounterApp
+  -- JScounter_app & VueCounterApp
   
     --> See the differences between JS and Vue3
     
