@@ -33,5 +33,10 @@ Order:
         
    -- ShowApp
    
-    --> 
+    --> where to fetch data, HTTP request, Suspense Component, Request Offset and limits, Paginations,
+        fetching data with onMounted, slots for dynamic HTML, Loading states, maintaining with KeepAlive
+        
+  -- StateApp
+  
+    --> ref() Vs reactive() Vs provide()/inject() Vs Composable Vs Pinia
  
