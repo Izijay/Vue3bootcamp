@@ -40,5 +40,6 @@ Order:
     
   -- TypeSciptApp
   
-    --> introduction to TypeScript, TS with state, TS with functions, TS with Props, TS with Computed, Reusing Types throughout multiple components.
+    --> introduction to TypeScript, TS with state, TS with functions, TS with Props,
+        TS with Computed, Reusing Types throughout multiple components.
  
