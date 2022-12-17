@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "Chevy",
+        "price": 15000,
+        "year": 2015,
+        "contact": {
+            "dealer": "Joe",
+            "number": "111-111-1111"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Ford",
+        "price": 17000,
+        "year": 2000,
+        "contact": {
+            "dealer": "Paul",
+            "number": "222-222-5456"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Bentley",
+        "price": 155000,
+        "year": 2013,
+        "contact": {
+            "dealer": "Kevin",
+            "number": "232-124-6548"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Buick",
+        "price": 1500,
+        "year": 1995,
+        "contact": {
+            "dealer": "Bob",
+            "number": "888-888-6987"
+        }
+    },
+    {
+        "id": 5,
+        "name": "VW",
+        "price": 60000,
+        "year": 2021,
+        "contact": {
+            "dealer": "Mama",
+            "number": "666-666-6666"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Fiat",
+        "price": 150,
+        "year": 1985,
+        "contact": {
+            "dealer": "Tamer",
+            "number": "753-357-6541"
+        }
+    }
+]
