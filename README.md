@@ -37,4 +37,8 @@ Order:
   -- StateApp
   
     --> ref() Vs reactive() Vs provide()/inject() Vs Composable Vs Pinia
+    
+  -- TypeSciptApp
+  
+    --> introduction to TypeScript, TS with state, TS with functions, TS with Props, TS with Computed, Reusing Types throughout multiple components.
  
