@@ -43,3 +43,8 @@ Order:
     --> introduction to TypeScript, TS with state, TS with functions, TS with Props,
         TS with Computed, Reusing Types throughout multiple components.
  
+  -- Instagram
+  
+    --> NavBar, Modal, Timeline, Profile view, Userbar, Image Gallery,
+        Authentication, Supabase, Pinia, Signup, Login, Logout, 
+        Profile page, error handling, Loading state, Upload images...
