@@ -3,33 +3,69 @@ import Card from './Card.vue';
 import Container from './Container.vue';
 import Userbar from './Userbar.vue';
 import ImageGallery from './ImageGallery.vue';
+import {ref, onMounted} from "vue";
+import { supabase } from '../supabase';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
+const user = ref(null);
+const {username} = route.params;
+const posts = ref([]);
+const loading = ref(false);
+
+const addNewPost = (post) => {
+    posts.value.unshift(post);
+}
+
+const fetchData = async () => {
+    loading.value = true;
+    const {data: userData} = await supabase
+        .from("users")
+        .select()
+        .eq('username', username)
+        .single();
+
+    if (!userData) {
+        loading.value = false;
+        return user.value = null;
+    }
+
+    user.value = userData;
+
+    const {data: postsData} = await supabase
+        .from("posts")
+        .select()
+        .eq("owner_id", user.value.id);
+
+    posts.value = postsData;
+
+    loading.value = false;
+}
+
+onMounted(() => {
+    fetchData()
+})
 
 </script>
 
 <template>
     <Container>
-        <div class="profile-container">
+        <div class="profile-container" v-if="!loading">
             <Userbar 
-                username="laithharb"
+                :key="$route.params.username"
+                :user="user"
                 :userInfo="{
                     posts: 4,
                     followers: 100,
                     following: 342
                 }"
-            
+                :addNewPost="addNewPost"
             />
-            <ImageGallery :posts="[
-                {
-                    id: 1,
-                    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tJTIwcGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'
-                },
-                {
-                    id: 2,
-                    image: 'https://static.skillshare.com/cdn-cgi/image/quality=80,width=1000,format=auto/uploads/project/4c49440fec9b45c5464596033e0a23d7/ad168d89'
-                }
-            ]"/>
-        </div> 
+            <ImageGallery :posts="posts"/>
+        </div>
+        <div class="spinner" v-else>
+            <ASpin />
+        </div>
     </Container>
 </template>
 
@@ -39,5 +75,12 @@ import ImageGallery from './ImageGallery.vue';
         flex-direction: column;
         align-items: left;
         padding: 20px 0;
+    }
+
+    .spinner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 85vh;
     }
 </style>

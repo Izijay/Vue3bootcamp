@@ -3,10 +3,14 @@ import { RouterLink, useRouter } from "vue-router"
 import Container from "./Container.vue"
 import AuthModal from "./AuthModal.vue";
 import { ref } from "vue";
+import { useUserStore } from "../stores/users";
+import { storeToRefs } from "pinia";
 
+const userStore = useUserStore()
+
+const { user, loadingUser } = storeToRefs(userStore)
 const router = useRouter()
 const searchUsername = ref("")
-const isAuthenticated = false;
 
 const onSearch = () => {
     if (searchUsername.value) {
@@ -15,6 +19,13 @@ const onSearch = () => {
     }
 }
 
+const handleLogout = async () => {
+    await userStore.handleLogout()
+}
+
+const goToUsersProfile = () => {
+    router.push(`/profile/${user.value.username}`)
+}
 </script>
 
 <template>
@@ -26,14 +37,17 @@ const onSearch = () => {
                     <AInputSearch v-model:value="searchUsername" placeholder="username..." style="width: 200px"
                         @search="onSearch" />
                 </div>
-                <div class="right-content" v-if="!isAuthenticated">
-                    <AuthModal :isLogin="false"/>
-                    <AuthModal :isLogin="true"/>
+                <div class="content" v-if="!loadingUser">
+                    <div class="right-content" v-if="!user">
+                        <AuthModal :isLogin="false" />
+                        <AuthModal :isLogin="true" />
+                    </div>
+                    <div class="right-content" v-else>
+                        <AButton type="primary" @click="goToUsersProfile">Profile</AButton>
+                        <AButton type="primary" @click="handleLogout">Logout</AButton>
+                    </div>
                 </div>
-                <div class="right-content" v-else>
-                    <AButton type="primary">Profile</AButton>
-                    <AButton type="primary">Logout</AButton>
-                </div>
+
             </div>
         </Container>
     </ALayoutHeader>
@@ -45,13 +59,18 @@ const onSearch = () => {
     justify-content: space-between;
 }
 
-.left-content{
+.left-content {
     display: flex;
     align-items: center;
 }
 
 .left-content a {
     margin-right: 10px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
 }
 
 .right-content {
@@ -62,5 +81,4 @@ const onSearch = () => {
 .right-content button {
     margin-right: 10px;
 }
-
 </style>
