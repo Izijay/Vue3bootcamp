@@ -47,4 +47,8 @@ Order:
   
     --> NavBar, Modal, Timeline, Profile view, Userbar, Image Gallery,
         Authentication, Supabase, Pinia, Signup, Login, Logout, 
-        Profile page, error handling, Loading state, Upload images...
+        Profile page, error handling, Loading state, Upload images,
+        Following_follower DB table, Follow user fonctionality,
+        Check Auth status in timeline page, More components,
+        Fetching data (followers'posts...), sorting posts (most recents),
+        emmiting event on Intersect, Scrolling pagination...
